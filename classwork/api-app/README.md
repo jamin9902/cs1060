@@ -1,63 +1,68 @@
-# Spotify-SoundCloud Music Discovery App
+# Next.js + FastAPI Web Application
 
-This application allows users to discover SoundCloud music based on their Spotify preferences. Users can select songs or playlists from their Spotify account and find similar tracks on SoundCloud.
+This is a modern web application built with Next.js frontend and FastAPI backend.
 
-## Features
-
-- Spotify Authentication and Integration
-- Song/Playlist selection from Spotify
-- SoundCloud track discovery
-- Similar music recommendations
-- Modern, responsive UI
-
-## Tech Stack
-
-- Frontend: Next.js 14 with TypeScript
-- Backend: FastAPI
-- Authentication: OAuth 2.0
-- APIs: Spotify Web API, SoundCloud API
-
-## Setup
-
-1. Install frontend dependencies:
-```bash
-cd frontend
-npm install
+## Project Structure
+```
+api-app/
+├── frontend/           # Next.js frontend
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── next.config.js
+├── backend/           # FastAPI backend
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── routers/
+│   │   └── models/
+│   └── requirements.txt
+└── README.md
 ```
 
-2. Install backend dependencies:
+## Setup Instructions
+
+### Backend Setup
+1. Create a Python virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: .\venv\Scripts\activate
+```
+
+2. Install dependencies:
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
-Create `.env.local` in the frontend directory and `.env` in the backend directory with your API keys:
-
-```env
-# Frontend (.env.local)
-NEXT_PUBLIC_SPOTIFY_CLIENT_ID=your_spotify_client_id
-NEXT_PUBLIC_API_URL=http://localhost:8000
-
-# Backend (.env)
-SPOTIFY_CLIENT_ID=your_spotify_client_id
-SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-SOUNDCLOUD_CLIENT_ID=your_soundcloud_client_id
-SOUNDCLOUD_CLIENT_SECRET=your_soundcloud_client_secret
+3. Run the FastAPI server:
+```bash
+uvicorn app.main:app --reload
 ```
 
-4. Run the development servers:
-
-Frontend:
+### Frontend Setup
+1. Install Node.js dependencies:
 ```bash
 cd frontend
+npm install
+```
+
+2. Run the development server:
+```bash
 npm run dev
 ```
 
-Backend:
-```bash
-cd backend
-uvicorn main:app --reload
-```
+## Development
+- Frontend runs on: http://localhost:3000
+- Backend runs on: http://localhost:8000
+- API documentation: http://localhost:8000/docs
 
-Visit `http://localhost:3000` to use the application.
+## Technologies Used
+- Frontend:
+  - Next.js 14
+  - React
+  - Tailwind CSS
+  - TypeScript
+- Backend:
+  - FastAPI
+  - Python 3.9+
+  - Pydantic
