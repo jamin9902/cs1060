@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.routers import spotify
 
 app = FastAPI(title="Next.js + FastAPI App")
 
@@ -11,6 +12,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include routers
+app.include_router(spotify.router)
 
 @app.get("/")
 async def read_root():

@@ -2,3 +2,5 @@
 /frontend/.next/
 /backend/venv/
 /backend/app/__pycache__
+/backend/app/routers/__pycache__
+/backend/tests/__pycache__

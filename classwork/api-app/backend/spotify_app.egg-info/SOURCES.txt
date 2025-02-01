@@ -1,0 +1,10 @@
+setup.py
+app/__init__.py
+app/main.py
+app/routers/__init__.py
+app/routers/spotify.py
+spotify_app.egg-info/PKG-INFO
+spotify_app.egg-info/SOURCES.txt
+spotify_app.egg-info/dependency_links.txt
+spotify_app.egg-info/requires.txt
+spotify_app.egg-info/top_level.txt
