@@ -83,6 +83,10 @@ class Tetris {
         this.currentPiece = null;
         this.nextPiece = null;
         
+        // Reset pause button text
+        const pauseBtn = document.getElementById('pauseBtn');
+        pauseBtn.textContent = 'Pause';
+        
         // Update the score display
         this.updateScore();
         
@@ -96,9 +100,14 @@ class Tetris {
     
     togglePause() {
         this.isPaused = !this.isPaused;
+        // Update pause button text
+        const pauseBtn = document.getElementById('pauseBtn');
+        pauseBtn.textContent = this.isPaused ? 'Play' : 'Pause';
+        
         if (this.isPaused && this.gameLoopId !== null) {
             clearTimeout(this.gameLoopId);
             this.gameLoopId = null;
+            this.draw(); // Draw the pause overlay
         } else if (!this.isPaused) {
             this.gameLoop();
         }
@@ -382,8 +391,8 @@ class Tetris {
             });
         }
         
-        // Draw game over
-        if (this.gameOver) {
+        // Draw overlay (game over or pause)
+        if (this.gameOver || this.isPaused) {
             const dpr = window.devicePixelRatio || 1;
             const displayWidth = this.canvas.width / dpr;
             const displayHeight = this.canvas.height / dpr;
@@ -400,29 +409,38 @@ class Tetris {
             const centerX = (this.BOARD_WIDTH * this.BLOCK_SIZE) / 2;
             const centerY = (this.BOARD_HEIGHT * this.BLOCK_SIZE) / 4; // Position at 1/4 height
             
-            // Game Over text (smaller font)
+            // Main text setup
             this.ctx.font = `bold ${14 * dpr}px Arial`;
+            const mainText = this.gameOver ? 'GAME OVER' : 'PAUSED';
             
             // Shadow
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            this.ctx.fillText('GAME OVER', centerX + 1, centerY + 1);
+            this.ctx.fillText(mainText, centerX + 1, centerY + 1);
             
             // Main text
             this.ctx.fillStyle = '#4facfe';
-            this.ctx.fillText('GAME OVER', centerX, centerY);
+            this.ctx.fillText(mainText, centerX, centerY);
 
-            // Score text (even smaller)
-            this.ctx.font = `bold ${10 * dpr}px Arial`;
-            this.ctx.fillStyle = 'white';
-            this.ctx.fillText(`Score: ${this.score}`, centerX, centerY + 30);
+            // Score text (only for game over)
+            if (this.gameOver) {
+                this.ctx.font = `bold ${10 * dpr}px Arial`;
+                this.ctx.fillStyle = 'white';
+                this.ctx.fillText(`Score: ${this.score}`, centerX, centerY + 30);
+            }
         }
     }
     
     handleKeyPress(event) {
         console.log('Key pressed:', event.key, 'Key code:', event.keyCode);
         // Prevent default behavior for game control keys
-        if ([32, 37, 38, 39, 40, 67, 99].includes(event.keyCode)) {
+        if ([32, 37, 38, 39, 40, 67, 80, 99].includes(event.keyCode)) {
             event.preventDefault();
+        }
+        
+        // Handle pause key even when paused
+        if (event.keyCode === 80) { // 'P' key
+            this.togglePause();
+            return;
         }
         
         if (this.gameOver || this.isPaused) return;
