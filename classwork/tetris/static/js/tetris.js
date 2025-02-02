@@ -155,12 +155,16 @@ class Tetris {
         });
     }
     
-    checkCollision() {
-        return this.currentPiece.shape.some((row, dy) => {
+    checkCollision(shape = null, x = null, y = null) {
+        const pieceShape = shape || this.currentPiece.shape;
+        const pieceX = x !== null ? x : this.currentPiece.x;
+        const pieceY = y !== null ? y : this.currentPiece.y;
+
+        return pieceShape.some((row, dy) => {
             return row.some((value, dx) => {
                 if (!value) return false;
-                const newX = this.currentPiece.x + dx;
-                const newY = this.currentPiece.y + dy;
+                const newX = pieceX + dx;
+                const newY = pieceY + dy;
                 return newX < 0 || newX >= this.BOARD_WIDTH ||
                        newY >= this.BOARD_HEIGHT ||
                        (newY >= 0 && this.board[newY][newX]);
@@ -251,6 +255,16 @@ class Tetris {
         document.getElementById('lines').textContent = this.lines;
     }
     
+    getGhostPosition() {
+        if (!this.currentPiece) return null;
+        
+        let ghostY = this.currentPiece.y;
+        while (!this.checkCollision(this.currentPiece.shape, this.currentPiece.x, ghostY + 1)) {
+            ghostY++;
+        }
+        return { x: this.currentPiece.x, y: ghostY };
+    }
+
     draw() {
         // Clear canvas
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -266,6 +280,22 @@ class Tetris {
                 }
             });
         });
+        
+        // Draw ghost piece
+        if (this.currentPiece) {
+            const ghostPos = this.getGhostPosition();
+            this.currentPiece.shape.forEach((row, dy) => {
+                row.forEach((value, dx) => {
+                    if (value) {
+                        const x = (ghostPos.x + dx) * this.BLOCK_SIZE;
+                        const y = (ghostPos.y + dy) * this.BLOCK_SIZE;
+                        this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                        this.ctx.lineWidth = 2;
+                        this.ctx.strokeRect(x, y, this.BLOCK_SIZE, this.BLOCK_SIZE);
+                    }
+                });
+            });
+        }
         
         // Draw current piece
         if (this.currentPiece) {
