@@ -205,6 +205,8 @@ body {
     border-radius: 8px;
     padding: 20px;
     margin: 0 10px;
+    width: 290px;  /* 250px canvas + 40px padding */
+    height: 540px; /* 500px canvas + 40px padding */
 }
 
 #tetris {

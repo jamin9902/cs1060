@@ -7,27 +7,14 @@ class Tetris {
         this.holdCanvas = document.getElementById('holdPiece');
         this.holdCtx = this.holdCanvas.getContext('2d');
         
-        // Get container dimensions
-        const container = this.canvas.parentElement;
-        const containerRect = container.getBoundingClientRect();
-        
-        // Set ideal dimensions while maintaining aspect ratio
+        // Fixed dimensions
         this.BOARD_WIDTH = 10;
         this.BOARD_HEIGHT = 20;
-        const idealRatio = this.BOARD_HEIGHT / this.BOARD_WIDTH;
+        this.BLOCK_SIZE = 25; // Each block is 25px
         
-        // Add margins to ensure we don't touch the edges
-        const availableWidth = containerRect.width - 20;
-        const availableHeight = containerRect.height - 20;
-        
-        // Calculate the maximum possible block size that fits in the container
-        const maxBlockByWidth = Math.floor(availableWidth / this.BOARD_WIDTH);
-        const maxBlockByHeight = Math.floor(availableHeight / this.BOARD_HEIGHT);
-        this.BLOCK_SIZE = Math.min(maxBlockByWidth, maxBlockByHeight, 25);
-        
-        // Calculate actual dimensions
-        const actualWidth = this.BLOCK_SIZE * this.BOARD_WIDTH;
-        const actualHeight = this.BLOCK_SIZE * this.BOARD_HEIGHT;
+        // Fixed canvas size (250x500)
+        const actualWidth = 250;
+        const actualHeight = 500;
         
         // Scale for retina displays
         const dpr = window.devicePixelRatio || 1;
@@ -35,9 +22,7 @@ class Tetris {
         this.canvas.height = actualHeight * dpr;
         this.ctx.scale(dpr, dpr);
         
-        // Set display size
-        this.canvas.style.width = `${actualWidth}px`;
-        this.canvas.style.height = `${actualHeight}px`;
+        // Canvas size is already set in HTML
         
         // Game state
         this.board = Array(this.BOARD_HEIGHT).fill().map(() => Array(this.BOARD_WIDTH).fill(0));
