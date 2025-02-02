@@ -384,12 +384,37 @@ class Tetris {
         
         // Draw game over
         if (this.gameOver) {
-            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            const dpr = window.devicePixelRatio || 1;
+            const displayWidth = this.canvas.width / dpr;
+            const displayHeight = this.canvas.height / dpr;
+
+            // Darken the background more
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = 'white';
-            this.ctx.font = '30px Arial';
+
+            // Set up text rendering
             this.ctx.textAlign = 'center';
-            this.ctx.fillText('Game Over', this.canvas.width / 2, this.canvas.height / 2);
+            this.ctx.textBaseline = 'middle';
+            
+            // Calculate positions based on block size for better alignment
+            const centerX = (this.BOARD_WIDTH * this.BLOCK_SIZE) / 2;
+            const centerY = (this.BOARD_HEIGHT * this.BLOCK_SIZE) / 4; // Position at 1/4 height
+            
+            // Game Over text (smaller font)
+            this.ctx.font = `bold ${14 * dpr}px Arial`;
+            
+            // Shadow
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            this.ctx.fillText('GAME OVER', centerX + 1, centerY + 1);
+            
+            // Main text
+            this.ctx.fillStyle = '#4facfe';
+            this.ctx.fillText('GAME OVER', centerX, centerY);
+
+            // Score text (even smaller)
+            this.ctx.font = `bold ${10 * dpr}px Arial`;
+            this.ctx.fillStyle = 'white';
+            this.ctx.fillText(`Score: ${this.score}`, centerX, centerY + 30);
         }
     }
     
