@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div class="game-info">
+                <div class="game-header">
+                    <h1>TETRIS</h1>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">SCORE</div>
+                            <div class="stat-value" id="score">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">LEVEL</div>
+                            <div class="stat-value" id="level">1</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">LINES</div>
+                            <div class="stat-value" id="lines">0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="next-piece-container">
+                    <h2>NEXT PIECE</h2>
+                    <div class="next-piece-box">
+                        <canvas id="nextPiece" width="120" height="120"></canvas>
+                    </div>
+                </div>
+
+                <div class="controls-container">
+                    <button id="startBtn" class="btn btn-primary">New Game</button>
+                    <button id="pauseBtn" class="btn btn-secondary">Pause</button>
+                </div>
+
+                <div class="instructions-panel">
+                    <h2>CONTROLS</h2>
+                    <div class="key-bindings">
+                        <div class="key-bind">
+                            <span class="key">←</span>
+                            <span class="key">→</span>
+                            <span class="action">Move</span>
+                        </div>
+                        <div class="key-bind">
+                            <span class="key">↑</span>
+                            <span class="action">Rotate</span>
+                        </div>
+                        <div class="key-bind">
+                            <span class="key">↓</span>
+                            <span class="action">Soft Drop</span>
+                        </div>
+                        <div class="key-bind">
+                            <span class="key">Space</span>
+                            <span class="action">Hard Drop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="game-board">
+                <canvas id="tetris" width="360" height="720"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/tetris.js') }}"></script>
+</body>
+</html>
