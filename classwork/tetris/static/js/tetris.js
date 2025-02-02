@@ -4,6 +4,8 @@ class Tetris {
         this.ctx = this.canvas.getContext('2d');
         this.nextCanvas = document.getElementById('nextPiece');
         this.nextCtx = this.nextCanvas.getContext('2d');
+        this.holdCanvas = document.getElementById('holdPiece');
+        this.holdCtx = this.holdCanvas.getContext('2d');
         
         // Get container dimensions
         const container = this.canvas.parentElement;
@@ -70,6 +72,8 @@ class Tetris {
         // Current piece
         this.currentPiece = null;
         this.nextPiece = null;
+        this.holdPiece = null;
+        this.hasHeldThisTurn = false;
         
         // Bind event handlers
         document.addEventListener('keydown', this.handleKeyPress.bind(this));
@@ -121,11 +125,15 @@ class Tetris {
             this.nextPiece = shapes[Math.floor(Math.random() * shapes.length)];
         }
         
+        // Create a deep copy of the shape array to ensure independence
+        const shapeArray = this.SHAPES[this.nextPiece].map(row => [...row]);
+        
         this.currentPiece = {
-            shape: this.SHAPES[this.nextPiece],
+            shape: shapeArray,
             color: this.COLORS[this.nextPiece],
-            x: Math.floor(this.BOARD_WIDTH / 2) - Math.floor(this.SHAPES[this.nextPiece][0].length / 2),
-            y: 0
+            x: Math.floor(this.BOARD_WIDTH / 2) - Math.floor(shapeArray[0].length / 2),
+            y: 0,
+            type: this.nextPiece  // Store the piece type directly
         };
         
         this.nextPiece = shapes[Math.floor(Math.random() * shapes.length)];
@@ -136,6 +144,80 @@ class Tetris {
         }
     }
     
+    drawHoldPiece() {
+        const canvas = this.holdCanvas;
+        const ctx = this.holdCtx;
+        const blockSize = 20;  // Smaller block size for hold piece
+
+        // Clear the hold piece canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        if (!this.holdPiece) return;
+        
+        const shape = this.SHAPES[this.holdPiece];
+        const width = shape[0].length * blockSize;
+        const height = shape.length * blockSize;
+        const offsetX = (canvas.width - width) / 2;
+        const offsetY = (canvas.height - height) / 2;
+        
+        // Draw the held piece
+        shape.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value) {
+                    ctx.fillStyle = this.COLORS[this.holdPiece];
+                    ctx.fillRect(offsetX + x * blockSize, offsetY + y * blockSize, blockSize, blockSize);
+                    ctx.strokeStyle = 'black';
+                    ctx.strokeRect(offsetX + x * blockSize, offsetY + y * blockSize, blockSize, blockSize);
+                }
+            });
+        });
+    }
+
+    holdCurrentPiece() {
+        console.log('Hold piece function called');
+        console.log('Current state:', {
+            hasHeldThisTurn: this.hasHeldThisTurn,
+            currentPiece: this.currentPiece,
+            holdPiece: this.holdPiece
+        });
+
+        if (this.hasHeldThisTurn || !this.currentPiece) {
+            console.log('Cannot hold piece - already held this turn or no current piece');
+            return;
+        }
+
+        // Use the stored piece type directly
+        const currentType = this.currentPiece.type;
+        console.log('Current piece type:', currentType);
+
+        if (!currentType) {
+            console.log('Could not determine piece type');
+            return;
+        }
+
+        const oldHoldPiece = this.holdPiece;
+        this.holdPiece = currentType;
+
+        if (oldHoldPiece === null) {
+            // If no piece was being held, generate a new piece
+            this.generateNewPiece();
+        } else {
+            // If a piece was being held, make it the current piece
+            const shapeArray = this.SHAPES[oldHoldPiece].map(row => [...row]);
+            this.currentPiece = {
+                shape: shapeArray,
+                color: this.COLORS[oldHoldPiece],
+                x: Math.floor(this.BOARD_WIDTH / 2) - Math.floor(shapeArray[0].length / 2),
+                y: 0,
+                type: oldHoldPiece
+            };
+        }
+
+        this.hasHeldThisTurn = true;
+        this.drawHoldPiece();
+        this.draw();
+    }
+
     drawNextPiece() {
         this.nextCtx.clearRect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
         const shape = this.SHAPES[this.nextPiece];
@@ -191,6 +273,7 @@ class Tetris {
             this.currentPiece.y--;
             this.freezePiece();
             this.clearLines();
+            this.hasHeldThisTurn = false;  // Reset before generating new piece
             this.generateNewPiece();
             return false;
         }
@@ -213,6 +296,7 @@ class Tetris {
     
     hardDrop() {
         while (this.moveDown()) {}
+        this.hasHeldThisTurn = false;  // Also reset after hard drop
     }
     
     freezePiece() {
@@ -325,8 +409,9 @@ class Tetris {
     }
     
     handleKeyPress(event) {
+        console.log('Key pressed:', event.key, 'Key code:', event.keyCode);
         // Prevent default behavior for game control keys
-        if ([32, 37, 38, 39, 40].includes(event.keyCode)) {
+        if ([32, 37, 38, 39, 40, 67, 99].includes(event.keyCode)) {
             event.preventDefault();
         }
         
@@ -347,6 +432,11 @@ class Tetris {
                 break;
             case 32: // Space
                 this.hardDrop();
+                break;
+            case 67: // 'C' key (uppercase)
+            case 99: // 'c' key (lowercase)
+                console.log('Hold piece triggered');
+                this.holdCurrentPiece();
                 break;
         }
         
