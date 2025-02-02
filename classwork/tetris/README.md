@@ -2,22 +2,19 @@
 
 A modern, responsive web-based Tetris game built with Python Flask and HTML5 Canvas.
 
-![Tetris Game Screenshot](screenshots/tetris.png) *(Screenshot will be added when available)*
+![Tetris Game Screenshot](screenshots/tetris.png) _(Screenshot will be added when available)_
 
 ## Features
 
-- Classic Tetris gameplay
-- Responsive design that works on both desktop and mobile devices
-- Modern UI with glass-morphism effects
+- Classic Tetris gameplay, including hold piece functionality
 - Score tracking system
-- Increasing difficulty levels
 - Next piece preview
-- Hold piece functionality
-- High DPI display support
+- Pause/play functionality
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Python 3.6 or higher
 - pip (Python package installer)
 - Node.js and npm (for running tests)
@@ -25,12 +22,14 @@ Before you begin, ensure you have the following installed:
 ## Installation
 
 1. Clone the repository or download the source code:
+
    ```bash
    git clone <repository-url>
    cd tetris
    ```
 
 2. Create a virtual environment (recommended):
+
    ```bash
    # On macOS/Linux
    python3 -m venv venv
@@ -51,6 +50,7 @@ Before you begin, ensure you have the following installed:
 1. Make sure your virtual environment is activated (if you created one)
 
 2. Start the Flask server:
+
    ```bash
    python app.py
    ```
@@ -116,6 +116,7 @@ tetris/
 ## Running Tests
 
 1. Install Node.js dependencies:
+
    ```bash
    npm install
    ```
@@ -126,6 +127,7 @@ tetris/
    ```
 
 The test suite covers:
+
 - Line clearing and scoring
 - Collision detection
 - Game over conditions
@@ -136,13 +138,3 @@ The test suite covers:
 ## Contributing
 
 Feel free to fork the repository and submit pull requests for any improvements you'd like to make.
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Acknowledgments
-
-- Built using Flask web framework
-- Inspired by the classic Tetris game
-- Modern UI design principles
