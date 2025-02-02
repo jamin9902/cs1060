@@ -305,6 +305,7 @@ class Tetris {
                 }
             });
         });
+        this.hasHeldThisTurn = false;  // Reset the hold flag when piece is placed
     }
     
     clearLines() {
@@ -481,6 +482,13 @@ class Tetris {
 }
 
 // Start the game when the page loads
-window.onload = () => {
-    const game = new Tetris();
-};
+if (typeof window !== 'undefined') {
+    window.onload = () => {
+        const game = new Tetris();
+    };
+}
+
+// Export for testing
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Tetris;
+}

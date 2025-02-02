@@ -12,6 +12,7 @@ A modern, responsive web-based Tetris game built with Python Flask and HTML5 Can
 - Score tracking system
 - Increasing difficulty levels
 - Next piece preview
+- Hold piece functionality
 - High DPI display support
 
 ## Prerequisites
@@ -19,6 +20,7 @@ A modern, responsive web-based Tetris game built with Python Flask and HTML5 Can
 Before you begin, ensure you have the following installed:
 - Python 3.6 or higher
 - pip (Python package installer)
+- Node.js and npm (for running tests)
 
 ## Installation
 
@@ -64,15 +66,24 @@ Before you begin, ensure you have the following installed:
 - Use the **Up** arrow key to rotate the piece
 - Use the **Down** arrow key for soft drop (faster descent)
 - Press the **Spacebar** for hard drop (immediate placement)
+- Press **C** or **Shift** to hold a piece
 - Click the **New Game** button to start a new game
 - Click the **Pause** button to pause/resume the game
 
 ## Game Rules
 
 - Lines are cleared when they are completely filled with blocks
-- Score points by clearing lines and placing pieces
-- The game speeds up as you progress through levels
+- Score points by clearing lines and placing pieces:
+  - Single line: 40 × level points
+  - Double lines: 100 × level points
+  - Triple lines: 300 × level points
+  - Tetris (4 lines): 1200 × level points
+- The game speeds up as you progress through levels (every 10 lines)
 - Game ends when pieces reach the top of the board
+- Hold piece rules:
+  - You can hold one piece at a time
+  - You can't hold the same piece twice in a row
+  - The hold slot resets when you place a piece
 
 ## Project Structure
 
@@ -80,14 +91,17 @@ Before you begin, ensure you have the following installed:
 tetris/
 ├── app.py              # Flask application server
 ├── requirements.txt    # Python dependencies
+├── package.json        # Node.js dependencies
 ├── README.md          # This file
 ├── static/
 │   ├── css/
 │   │   └── style.css  # Game styling
 │   └── js/
 │       └── tetris.js  # Game logic
-└── templates/
-    └── index.html     # Game interface
+├── templates/
+│   └── index.html     # Game interface
+└── tests/
+    └── tetris.test.js # Game unit tests
 ```
 
 ## Technical Details
@@ -97,6 +111,27 @@ tetris/
 - Rendering: HTML5 Canvas
 - Styling: Modern CSS with Flexbox and CSS Grid
 - Dependencies: Flask, Flask-CORS
+- Testing: Jest
+
+## Running Tests
+
+1. Install Node.js dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the test suite:
+   ```bash
+   npm test
+   ```
+
+The test suite covers:
+- Line clearing and scoring
+- Collision detection
+- Game over conditions
+- Hold piece mechanics
+- Piece movement and rotation
+- Level progression
 
 ## Contributing
 
