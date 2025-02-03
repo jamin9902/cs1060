@@ -60,30 +60,68 @@ Before you begin, ensure you have the following installed:
    http://localhost:5000
    ```
 
+## Running Tests
+
+1. Install Node.js dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Run the test suite:
+   ```bash
+   npm test
+   ```
+
+The test suite covers:
+
+- Line clearing and scoring
+- Collision detection
+- Game over conditions
+- Hold piece mechanics
+- Piece movement and rotation
+- Level progression
+
 ## How to Play
 
-- Use the **Left** and **Right** arrow keys to move the piece horizontally
-- Use the **Up** arrow key to rotate the piece
-- Use the **Down** arrow key for soft drop (faster descent)
-- Press the **Spacebar** for hard drop (immediate placement)
-- Press **C** or **Shift** to hold a piece
-- Click the **New Game** button to start a new game
-- Click the **Pause** button to pause/resume the game
+### Controls
+
+| Action | Key |
+|--------|-----|
+| Move Left | ←  Left Arrow |
+| Move Right | → Right Arrow |
+| Rotate | ↑  Up Arrow |
+| Soft Drop | ↓  Down Arrow |
+| Hard Drop | Spacebar |
+| Hold Piece | C or Shift |
+
+### Buttons
+
+- **New Game** - Start a fresh game
+- **Pause/Play** - Toggle game pause
 
 ## Game Rules
 
-- Lines are cleared when they are completely filled with blocks
-- Score points by clearing lines and placing pieces:
-  - Single line: 40 × level points
-  - Double lines: 100 × level points
-  - Triple lines: 300 × level points
-  - Tetris (4 lines): 1200 × level points
-- The game speeds up as you progress through levels (every 10 lines)
-- Game ends when pieces reach the top of the board
-- Hold piece rules:
-  - You can hold one piece at a time
-  - You can't hold the same piece twice in a row
-  - The hold slot resets when you place a piece
+### Scoring System
+
+| Lines Cleared | Points (× Level) |
+|--------------|----------------|
+| Single | 40 |
+| Double | 100 |
+| Triple | 300 |
+| Tetris (4) | 1200 |
+
+### Level Progression
+- Level increases every 10 lines cleared
+- Game speed increases with each level
+
+### Game Over
+- Game ends when a new piece can't be placed
+- Final score is displayed
+
+### Hold Piece System
+- Store one piece for later use
+- Hold slot becomes available again after placing a piece
 
 ## Project Structure
 
@@ -112,28 +150,6 @@ tetris/
 - Styling: Modern CSS with Flexbox and CSS Grid
 - Dependencies: Flask, Flask-CORS
 - Testing: Jest
-
-## Running Tests
-
-1. Install Node.js dependencies:
-
-   ```bash
-   npm install
-   ```
-
-2. Run the test suite:
-   ```bash
-   npm test
-   ```
-
-The test suite covers:
-
-- Line clearing and scoring
-- Collision detection
-- Game over conditions
-- Hold piece mechanics
-- Piece movement and rotation
-- Level progression
 
 ## Contributing
 

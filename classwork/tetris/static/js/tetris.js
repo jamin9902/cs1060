@@ -60,6 +60,9 @@ class Tetris {
         this.holdPiece = null;
         this.hasHeldThisTurn = false;
         
+        // Initialize AI
+        this.ai = new TetrisAI(this);
+
         // Bind event handlers
         document.addEventListener('keydown', this.handleKeyPress.bind(this));
         document.getElementById('startBtn').addEventListener('click', this.startGame.bind(this));
@@ -447,6 +450,11 @@ class Tetris {
         if (this.gameOver || this.isPaused) return;
         
         switch (event.keyCode) {
+            case 65: // 'A' key - Make AI move
+                if (this.currentPiece) {
+                    this.ai.makeMove();
+                }
+                break;
             case 37: // Left arrow
                 this.moveLeft();
                 break;
