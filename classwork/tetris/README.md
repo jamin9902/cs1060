@@ -2,7 +2,7 @@
 
 A modern, responsive web-based Tetris game built with Python Flask and HTML5 Canvas.
 
-![Tetris Game Screenshot](screenshots/tetris.png) _(Screenshot will be added when available)_
+![Tetris Game Screenshot](screenshots/tetris.png)
 
 ## Features
 
@@ -104,9 +104,13 @@ All keys can be held down for continuous action.
 - **New Game** - Start a fresh game
 - **Pause/Play** - Toggle game pause
 
-### Algorithm Assistant
+## Algorithm Assistant
 
-The game includes a piece placement algorithm that can help you during gameplay. Press the 'A' key to let the algorithm decide the optimal position for your current piece. You can also hold down the 'A' key to watch the algorithm play moves in rapid succession, effectively letting it play the game automatically. The algorithm:
+The game includes a piece placement algorithm that can help you during gameplay. Press the 'A' key to let the algorithm decide the optimal position for your current piece.
+
+Alternatively, you can hold down the 'A' key to watch the algorithm play moves in rapid succession, effectively letting it play the game automatically.
+
+In deciding the optimal move, the algorithm:
 
 - Evaluates multiple possible positions and rotations
 - Considers factors like:
