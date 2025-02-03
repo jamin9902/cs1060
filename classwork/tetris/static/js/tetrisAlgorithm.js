@@ -1,6 +1,6 @@
-// Simple Tetris AI that makes naive decisions about piece placement
+// Simple Tetris Algorithm that makes decisions about piece placement
 
-class TetrisAI {
+class TetrisAlgorithm {
     constructor(game) {
         this.game = game;
         this.debug = true; // Enable debug logging
@@ -220,7 +220,7 @@ class TetrisAI {
             // Drop the piece
             this.game.hardDrop();
         } catch (error) {
-            console.error('Error in AI makeMove:', error);
+            console.error('Error in Algorithm makeMove:', error);
         }
     }
 }

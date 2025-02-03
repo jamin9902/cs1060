@@ -10,6 +10,7 @@ A modern, responsive web-based Tetris game built with Python Flask and HTML5 Can
 - Score tracking system
 - Next piece preview
 - Pause/play functionality
+- Piece placement algorithm that can assist with gameplay
 
 ## Prerequisites
 
@@ -86,40 +87,57 @@ The test suite covers:
 
 ### Controls
 
-| Action | Key |
-|--------|-----|
-| Move Left | ←  Left Arrow |
+All keys can be held down for continuous action.
+
+| Action     | Key           |
+| ---------- | ------------- |
+| Move Left  | ← Left Arrow  |
 | Move Right | → Right Arrow |
-| Rotate | ↑  Up Arrow |
-| Soft Drop | ↓  Down Arrow |
-| Hard Drop | Spacebar |
-| Hold Piece | C or Shift |
+| Rotate     | ↑ Up Arrow    |
+| Soft Drop  | ↓ Down Arrow  |
+| Hard Drop  | Spacebar      |
+| Hold Piece | C or Shift    |
+| Algorithm  | A             |
 
 ### Buttons
 
 - **New Game** - Start a fresh game
 - **Pause/Play** - Toggle game pause
 
+### Algorithm Assistant
+
+The game includes a piece placement algorithm that can help you during gameplay. Press the 'A' key to let the algorithm decide the optimal position for your current piece. You can also hold down the 'A' key to watch the algorithm play moves in rapid succession, effectively letting it play the game automatically. The algorithm:
+
+- Evaluates multiple possible positions and rotations
+- Considers factors like:
+  - Height differences between columns
+  - Number of holes created
+  - Overall stack height
+- Automatically moves and rotates the piece to its chosen position
+
 ## Game Rules
 
 ### Scoring System
 
 | Lines Cleared | Points (× Level) |
-|--------------|----------------|
-| Single | 40 |
-| Double | 100 |
-| Triple | 300 |
-| Tetris (4) | 1200 |
+| ------------- | ---------------- |
+| Single        | 40               |
+| Double        | 100              |
+| Triple        | 300              |
+| Tetris (4)    | 1200             |
 
 ### Level Progression
+
 - Level increases every 10 lines cleared
 - Game speed increases with each level
 
 ### Game Over
+
 - Game ends when a new piece can't be placed
 - Final score is displayed
 
 ### Hold Piece System
+
 - Store one piece for later use
 - Hold slot becomes available again after placing a piece
 

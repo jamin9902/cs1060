@@ -60,8 +60,8 @@ class Tetris {
         this.holdPiece = null;
         this.hasHeldThisTurn = false;
         
-        // Initialize AI
-        this.ai = new TetrisAI(this);
+        // Initialize Algorithm
+        this.ai = new TetrisAlgorithm(this);
 
         // Bind event handlers
         document.addEventListener('keydown', this.handleKeyPress.bind(this));
@@ -85,6 +85,11 @@ class Tetris {
         this.isPaused = false;
         this.currentPiece = null;
         this.nextPiece = null;
+        this.holdPiece = null;
+        this.hasHeldThisTurn = false;
+        
+        // Clear the hold piece display
+        this.holdCtx.clearRect(0, 0, this.holdCanvas.width, this.holdCanvas.height);
         
         // Reset pause button text
         const pauseBtn = document.getElementById('pauseBtn');
@@ -450,7 +455,7 @@ class Tetris {
         if (this.gameOver || this.isPaused) return;
         
         switch (event.keyCode) {
-            case 65: // 'A' key - Make AI move
+            case 65: // 'A' key - Make Algorithm move
                 if (this.currentPiece) {
                     this.ai.makeMove();
                 }
