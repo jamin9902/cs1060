@@ -60,8 +60,10 @@ class Tetris {
         this.holdPiece = null;
         this.hasHeldThisTurn = false;
         
-        // Initialize Algorithm
-        this.ai = new TetrisAlgorithm(this);
+        // Initialize Algorithm if it exists
+        if (typeof TetrisAlgorithm !== 'undefined') {
+            this.ai = new TetrisAlgorithm(this);
+        }
 
         // Bind event handlers
         document.addEventListener('keydown', this.handleKeyPress.bind(this));

@@ -1,8 +1,12 @@
-# Tetris Web Application
+# Tetris
 
 A modern, responsive web-based Tetris game built with Python Flask and HTML5 Canvas.
 
 ![Tetris Game Screenshot](screenshots/tetris.png)
+
+## Preface
+
+I did not write a single line of this code - this project was completed exclusively using Windsurf by Codeium. A log of my prompts can be found in prompts.txt.
 
 ## Features
 
@@ -176,3 +180,7 @@ tetris/
 ## Contributing
 
 Feel free to fork the repository and submit pull requests for any improvements you'd like to make.
+
+## Google Drive Link
+
+[here]

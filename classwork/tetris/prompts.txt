@@ -1,0 +1,47 @@
+Create a web application that runs the game Tetris
+
+Style the UI so it looks a little cleaner
+
+Ok this is great - a few notes after testing it out:
+
+1. After pressing the pause button, pressing the space bar while playing the game will unintentionally pause the game.
+
+2. The game bleeds off of the screen vertically, leading the up and down arrows to also induce scroll up and down while playing
+
+Make a README file to describe how to set up the app and run it
+
+Each time I click the new game button, the blocks begin to move faster and faster. This should only happen as you complete more levels, not when you start the game over.
+
+Make it such that the game board fit cleanly into the view port - it's running off.
+
+Add an outline of where the block will fall if I hard drop it, just so it's a little more clear where the pieces fall.
+
+Add a feature which allows users to press the key “c” in order to hold a piece. This piece should be held onto and displayed in a new box on the UI - the game should move to the next piece. When a player presses “c” again - the current piece should be swapped for the held piece.
+
+The “c” button isn’t holding the pieces currently - The console is logging this error:
+
+tetris.js:434 Uncaught TypeError: this.holdPiece is not a function
+    at Tetris.handleKeyPress (tetris.js:434:22)
+handleKeyPress	@	tetris.js:434
+
+It's working pretty well now; however, every so often, a piece will be unable to swap. The console throws this error when that happens:
+
+tetris.js:200 Current piece type: undefined
+tetris.js:203 Could not determine piece type
+
+Ok, great now that works well - the issue is adding these new features has made the left column run out of the container. Can you move a couple things to the right side of the game board. Move the controls description and the score, level, and lines tracker.
+
+Can you add the same darkening effect to the game board during the pause screen as you do when the game is over?
+
+Can you change the pause button to "Play" when the game is paused?
+
+Can you create a unit test suite for the game? Create examples to test functionality for:
+- Line clearing
+- Collision checking
+- Game over detection
+- Piece holding
+Be exhaustive and feel free to add some of your own tests as well.
+
+Can you update the README file to include instructions for running tests, as well as the additional instructions surrounding the holding piece feature?
+
+Create a naive algorithm for automatically making moves
