@@ -1,0 +1,357 @@
+{
+    "categories": {
+        "leafy_greens": {
+            "name": "Leafy Greens",
+            "items": [
+                "spinach",
+                "kale",
+                "lettuce",
+                "arugula",
+                "swiss chard",
+                "collard greens",
+                "watercress",
+                "romaine lettuce",
+                "iceberg lettuce"
+            ]
+        },
+        "cruciferous_vegetables": {
+            "name": "Cruciferous Vegetables",
+            "items": [
+                "broccoli",
+                "cauliflower",
+                "brussels sprouts",
+                "cabbage",
+                "bok choy",
+                "kohlrabi",
+                "radish"
+            ]
+        },
+        "root_vegetables": {
+            "name": "Root Vegetables",
+            "items": [
+                "cucumber",
+                "carrots",
+                "potato",
+                "sweet potato",
+                "parsnip",
+                "turnip",
+                "beet",
+                "ginger",
+                "turmeric"
+            ]
+        },
+        "nightshade_vegetables": {
+            "name": "Nightshade Vegetables",
+            "items": [
+                "tomatoes",
+                "bell peppers",
+                "eggplant",
+                "chili pepper",
+                "jalapeno",
+                "poblano pepper"
+            ]
+        },
+        "allium_vegetables": {
+            "name": "Allium Vegetables",
+            "items": [
+                "onion",
+                "garlic",
+                "shallot",
+                "leek",
+                "scallion",
+                "chives"
+            ]
+        },
+        "squash_vegetables": {
+            "name": "Squash Vegetables",
+            "items": [
+                "zucchini",
+                "yellow squash",
+                "butternut squash",
+                "acorn squash",
+                "pumpkin",
+                "spaghetti squash"
+            ]
+        },
+        "poultry": {
+            "name": "Poultry",
+            "items": [
+                "chicken breast",
+                "chicken thigh",
+                "turkey",
+                "duck breast",
+                "chicken wings",
+                "ground turkey",
+                "chicken drumsticks"
+            ]
+        },
+        "beef": {
+            "name": "Beef",
+            "items": [
+                "ground beef",
+                "beef steak",
+                "ribeye",
+                "sirloin",
+                "beef tenderloin",
+                "flank steak",
+                "chuck roast"
+            ]
+        },
+        "pork": {
+            "name": "Pork",
+            "items": [
+                "pork chop",
+                "bacon",
+                "ham",
+                "pancetta",
+                "ground pork",
+                "pork tenderloin",
+                "pork belly"
+            ]
+        },
+        "plant_proteins": {
+            "name": "Plant-Based Proteins",
+            "items": [
+                "tofu",
+                "tempeh",
+                "chickpeas",
+                "black beans",
+                "lentils",
+                "seitan",
+                "edamame",
+                "quinoa"
+            ]
+        },
+        "fish": {
+            "name": "Fish",
+            "items": [
+                "salmon",
+                "tuna",
+                "cod",
+                "tilapia",
+                "halibut",
+                "sea bass",
+                "trout",
+                "mahi mahi"
+            ]
+        },
+        "shellfish": {
+            "name": "Shellfish",
+            "items": [
+                "shrimp",
+                "crab",
+                "lobster",
+                "mussels",
+                "clams",
+                "scallops",
+                "oysters"
+            ]
+        },
+        "milk_products": {
+            "name": "Milk Products",
+            "items": [
+                "milk",
+                "cream",
+                "heavy cream",
+                "half and half",
+                "buttermilk",
+                "condensed milk",
+                "evaporated milk"
+            ]
+        },
+        "cheese": {
+            "name": "Cheese",
+            "items": [
+                "parmesan cheese",
+                "cheddar cheese",
+                "mozzarella",
+                "feta cheese",
+                "cream cheese",
+                "ricotta",
+                "gouda",
+                "brie",
+                "blue cheese"
+            ]
+        },
+        "cultured_dairy": {
+            "name": "Cultured Dairy",
+            "items": [
+                "yogurt",
+                "greek yogurt",
+                "sour cream",
+                "cottage cheese",
+                "kefir",
+                "crème fraîche"
+            ]
+        },
+        "rice_grains": {
+            "name": "Rice and Grains",
+            "items": [
+                "white rice",
+                "brown rice",
+                "jasmine rice",
+                "basmati rice",
+                "wild rice",
+                "quinoa",
+                "barley",
+                "couscous",
+                "oats"
+            ]
+        },
+        "pasta": {
+            "name": "Pasta",
+            "items": [
+                "spaghetti",
+                "penne",
+                "fettuccine",
+                "linguine",
+                "rigatoni",
+                "macaroni",
+                "orzo",
+                "egg noodles",
+                "rice noodles"
+            ]
+        },
+        "bread": {
+            "name": "Bread",
+            "items": [
+                "white bread",
+                "whole wheat bread",
+                "sourdough",
+                "baguette",
+                "pita bread",
+                "tortillas",
+                "bagels",
+                "english muffins"
+            ]
+        },
+        "fresh_herbs": {
+            "name": "Fresh Herbs",
+            "items": [
+                "basil",
+                "cilantro",
+                "parsley",
+                "mint",
+                "rosemary",
+                "thyme",
+                "sage",
+                "oregano",
+                "chives"
+            ]
+        },
+        "dried_herbs": {
+            "name": "Dried Herbs",
+            "items": [
+                "dried basil",
+                "dried oregano",
+                "dried thyme",
+                "dried rosemary",
+                "dried sage",
+                "dried parsley",
+                "dried bay leaves"
+            ]
+        },
+        "spices": {
+            "name": "Spices",
+            "items": [
+                "black pepper",
+                "red pepper flakes",
+                "cumin",
+                "coriander",
+                "turmeric",
+                "paprika",
+                "cinnamon",
+                "nutmeg",
+                "cardamom",
+                "ginger powder"
+            ]
+        },
+        "oils": {
+            "name": "Oils",
+            "items": [
+                "olive oil",
+                "vegetable oil",
+                "sesame oil",
+                "coconut oil",
+                "avocado oil",
+                "grapeseed oil",
+                "peanut oil"
+            ]
+        },
+        "vinegars": {
+            "name": "Vinegars",
+            "items": [
+                "balsamic vinegar",
+                "red wine vinegar",
+                "white wine vinegar",
+                "apple cider vinegar",
+                "rice vinegar",
+                "sherry vinegar"
+            ]
+        },
+        "asian_sauces": {
+            "name": "Asian Sauces",
+            "items": [
+                "soy sauce",
+                "teriyaki sauce",
+                "hoisin sauce",
+                "fish sauce",
+                "oyster sauce",
+                "sriracha",
+                "sweet chili sauce"
+            ]
+        },
+        "condiments": {
+            "name": "Condiments",
+            "items": [
+                "ketchup",
+                "mustard",
+                "mayonnaise",
+                "hot sauce",
+                "tahini",
+                "pesto",
+                "wasabi",
+                "ranch dressing",
+                "italian dressing"
+            ]
+        },
+        "nuts_seeds": {
+            "name": "Nuts and Seeds",
+            "items": [
+                "almonds",
+                "walnuts",
+                "pine nuts",
+                "cashews",
+                "sesame seeds",
+                "sunflower seeds",
+                "pumpkin seeds",
+                "chia seeds",
+                "flax seeds"
+            ]
+        },
+        "fruits": {
+            "name": "Fruits",
+            "items": [
+                "lemon",
+                "lime",
+                "orange",
+                "apple",
+                "banana",
+                "avocado",
+                "mango",
+                "pineapple",
+                "berries",
+                "grapes",
+                "raisins"
+            ]
+        },
+        "eggs": {
+            "name": "Eggs",
+            "items": [
+                "eggs",
+                "egg whites",
+                "egg yolks"
+            ]
+        }
+    }
+}

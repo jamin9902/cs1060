@@ -1,0 +1,76 @@
+{
+    "recipes": [
+        {
+            "title": "Classic Pasta Carbonara",
+            "cuisine": "Italian",
+            "difficulty": "Medium",
+            "prep_time": "30 minutes",
+            "ingredients": ["penne", "eggs", "pancetta", "parmesan cheese", "black pepper", "olive oil", "garlic"],
+            "instructions": "1. Cook pasta according to package instructions\n2. Fry pancetta and garlic in olive oil until crispy\n3. Whisk eggs and grated parmesan\n4. Combine hot pasta with egg mixture and pancetta\n5. Season with black pepper",
+            "dietary": ["contains dairy", "contains eggs"]
+        },
+        {
+            "title": "Vegetable Stir-Fry",
+            "cuisine": "Asian",
+            "difficulty": "Easy",
+            "prep_time": "20 minutes",
+            "ingredients": ["broccoli", "carrots", "bell peppers", "soy sauce", "ginger", "garlic", "vegetable oil", "sesame oil"],
+            "instructions": "1. Chop all vegetables\n2. Heat oils in wok\n3. Stir-fry garlic and ginger\n4. Add vegetables in order of cooking time\n5. Season with soy sauce",
+            "dietary": ["vegan", "vegetarian"]
+        },
+        {
+            "title": "Greek Salad",
+            "cuisine": "Mediterranean",
+            "difficulty": "Easy",
+            "prep_time": "15 minutes",
+            "ingredients": ["cucumber", "tomatoes", "red onion", "feta cheese", "olive oil", "dried oregano", "black pepper"],
+            "instructions": "1. Chop vegetables into chunks\n2. Combine in bowl\n3. Top with feta and olives\n4. Dress with olive oil\n5. Season with oregano and salt",
+            "dietary": ["vegetarian", "gluten-free"]
+        },
+        {
+            "title": "Chicken Tikka Masala",
+            "cuisine": "Indian",
+            "difficulty": "Hard",
+            "prep_time": "1 hour",
+            "ingredients": ["chicken breast", "yogurt", "tomatoes", "heavy cream", "onion", "garlic", "ginger", "garam masala", "turmeric", "cumin", "coriander", "cilantro"],
+            "instructions": "1. Marinate chicken in yogurt and spices\n2. Grill chicken until charred\n3. Make sauce with tomatoes and cream\n4. Combine chicken and sauce\n5. Simmer until thick",
+            "dietary": ["contains dairy", "gluten-free"]
+        },
+        {
+            "title": "Quinoa Buddha Bowl",
+            "cuisine": "Modern",
+            "difficulty": "Easy",
+            "prep_time": "25 minutes",
+            "ingredients": ["quinoa", "sweet potato", "chickpeas", "kale", "tahini", "olive oil", "cumin"],
+            "instructions": "1. Cook quinoa\n2. Roast sweet potato and chickpeas\n3. Massage kale with olive oil\n4. Make tahini dressing\n5. Assemble bowl with all ingredients",
+            "dietary": ["vegan", "vegetarian", "gluten-free"]
+        },
+        {
+            "title": "Classic French Omelette",
+            "cuisine": "French",
+            "difficulty": "Medium",
+            "prep_time": "10 minutes",
+            "ingredients": ["eggs", "butter", "chives", "black pepper"],
+            "instructions": "1. Whisk eggs until smooth\n2. Melt butter in non-stick pan\n3. Pour eggs and stir constantly\n4. Add chives when almost set\n5. Fold and serve",
+            "dietary": ["vegetarian", "gluten-free"]
+        },
+        {
+            "title": "Guacamole",
+            "cuisine": "Mexican",
+            "difficulty": "Easy",
+            "prep_time": "15 minutes",
+            "ingredients": ["avocado", "tomatoes", "onion", "cilantro", "jalapeno", "black pepper"],
+            "instructions": "1. Mash avocados\n2. Dice tomato, onion, and jalapeno\n3. Chop cilantro\n4. Combine all ingredients\n5. Season with lime juice and salt",
+            "dietary": ["vegan", "vegetarian", "gluten-free"]
+        },
+        {
+            "title": "Sushi Roll",
+            "cuisine": "Japanese",
+            "difficulty": "Hard",
+            "prep_time": "45 minutes",
+            "ingredients": ["white rice", "cucumber", "avocado", "carrots", "rice vinegar", "wasabi", "soy sauce"],
+            "instructions": "1. Cook and season rice\n2. Prepare vegetables\n3. Place nori on bamboo mat\n4. Spread rice and add fillings\n5. Roll and slice",
+            "dietary": ["vegan", "vegetarian"]
+        }
+    ]
+}

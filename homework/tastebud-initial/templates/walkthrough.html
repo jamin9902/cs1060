@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.title }} - Step by Step Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .step-content {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .step-content.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <nav class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-gray-800 hover:text-gray-600">
+                    <svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Back to Search
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <!-- Recipe Header -->
+                <div class="mb-6">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ recipe.title }}</h1>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">{{ recipe.cuisine }}</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded">{{ recipe.difficulty }}</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded">{{ recipe.prep_time }}</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        {% for diet in recipe.dietary %}
+                        <span class="bg-gray-100 text-gray-800 text-sm font-medium px-3 py-1 rounded">{{ diet }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Navigation and Progress -->
+                <div class="flex items-center gap-4 mb-8">
+                    <button onclick="previousStep()" id="prev-btn" 
+                            class="px-6 py-3 text-lg bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+                        Previous
+                    </button>
+                    <div class="flex items-center gap-4 flex-1">
+                        <div class="flex-1 h-3 bg-gray-200 rounded-full">
+                            <div id="progress-bar" class="h-3 bg-blue-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <span class="text-lg font-medium text-gray-600 whitespace-nowrap"><span id="current-step">1</span>/<span id="total-steps">{{ recipe.steps|length }}</span></span>
+                    </div>
+                    <button onclick="nextStep()" id="next-btn" 
+                            class="px-6 py-3 text-lg bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+                        Next
+                    </button>
+                </div>
+
+                <!-- Step Content -->
+                <!-- Step Content -->
+                <div id="step-content" class="step-content active mb-8">
+                    <!-- Step content will be inserted here -->
+                </div>
+
+                <!-- Ingredients Section -->
+                <div class="mt-12 pt-8 border-t-2">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Ingredients</h2>
+                    <ul class="space-y-4">
+                        {% for ingredient in recipe.ingredients %}
+                        <li class="text-gray-700">
+                            <div class="flex flex-col">
+                                <div class="flex items-center gap-2">
+                                    <span>• {{ ingredient }}</span>
+                                    {% if ingredient in substitutes %}
+                                    <button onclick="toggleSubstitutes('{{ loop.index }}')"
+                                            class="text-sm text-blue-600 hover:text-blue-800 focus:outline-none">
+                                        Show substitutes
+                                    </button>
+                                    {% endif %}
+                                </div>
+                                {% if ingredient in substitutes %}
+                                <div id="substitutes-{{ loop.index }}" class="hidden ml-6 mt-2">
+                                    <p class="text-sm font-medium text-gray-600 mb-1">You can substitute with:</p>
+                                    <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+                                        {% for substitute in substitutes[ingredient] %}
+                                        <li>{{ substitute }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <script>
+                function toggleSubstitutes(index) {
+                    const substitutesDiv = document.getElementById(`substitutes-${index}`);
+                    const button = substitutesDiv.previousElementSibling.querySelector('button');
+                    const isHidden = substitutesDiv.classList.contains('hidden');
+                    
+                    substitutesDiv.classList.toggle('hidden');
+                    button.textContent = isHidden ? 'Hide substitutes' : 'Show substitutes';
+                }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store recipe steps
+        const recipeSteps = {{ recipe.steps|tojson|safe }};
+        let currentStep = 1;
+
+        function updateStep() {
+            const stepContent = document.getElementById('step-content');
+            const progressBar = document.getElementById('progress-bar');
+            const currentStepElement = document.getElementById('current-step');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // Update step content with transition
+            stepContent.classList.remove('active');
+            setTimeout(() => {
+                stepContent.innerHTML = `
+                    <div class="p-8 bg-gray-50 rounded-lg border-2 border-gray-200">
+                        <p class="text-gray-700 text-2xl leading-relaxed">${recipeSteps[currentStep - 1]}</p>
+                    </div>`;
+                stepContent.classList.add('active');
+            }, 300);
+
+            // Update progress
+            currentStepElement.textContent = currentStep;
+            const progress = (currentStep / recipeSteps.length) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Update button states
+            prevBtn.disabled = currentStep === 1;
+            nextBtn.textContent = currentStep === recipeSteps.length ? 'Finish' : 'Next';
+            nextBtn.disabled = false;
+        }
+
+        function nextStep() {
+            if (currentStep < recipeSteps.length) {
+                currentStep++;
+                updateStep();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        }
+
+        // Initialize the first step
+        document.addEventListener('DOMContentLoaded', updateStep);
+    </script>
+</body>
+</html>
